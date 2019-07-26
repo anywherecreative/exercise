@@ -22,6 +22,7 @@
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
 
     @yield('page.js.top')
+    <script src="https://kit.fontawesome.com/4cf0a28c84.js"></script>
 
 </head>
 

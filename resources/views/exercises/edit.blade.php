@@ -7,7 +7,7 @@
     <form action="{{ route('exercises.store') }}" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">Name</label>
-            <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" id="exerciseName" name="name" aria-describedby="nameHelp" placeholder="Enter Name">
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="exerciseName" value="{{ old('name',$exercise->name) }}" name="name" aria-describedby="nameHelp" placeholder="Enter Name">
             @error('name')
             <div class="form-text text-danger">{{ $message }}</div>
             @else
