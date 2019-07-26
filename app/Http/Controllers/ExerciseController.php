@@ -104,7 +104,27 @@ class ExerciseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'name'        => 'required',
+        ];
+
+        $this->validate($request, $rules);
+
+        try {
+            $exercise = Exercise::find($id);
+            if($exercise == null) {
+                Session::flash('message', __('Unable to save exercise!'));
+                Session::flash('alert-class', 'alert-danger');
+                return redirect()->back();
+            }
+            return view('exercises.edit')->withExercise($exercise);
+        }
+        catch(Exception $e) {
+            Log::critical( __METHOD__ . ' | ' . $e->getMessage() );
+            Session::flash('message', __('Unable to save exercise!'));
+            Session::flash('alert-class', 'alert-danger');
+            return redirect()->back()->withInput($request);
+        }
     }
 
     /**
