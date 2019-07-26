@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'ExerciseController@index')->name('index');
+Route::prefix('exercises')->group(function() {
+    Route::get('/', 'ExerciseController@index')->name('exercises.index');
+    Route::get('/add', 'ExerciseController@create')->name('exercises.add');
+    Route::post('/store', 'ExerciseController@store')->name('exercises.store');
 });
